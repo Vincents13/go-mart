@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go - Mart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg bg-success navbar-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">Go - Mart <i class="bi bi-cart-fill"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="aboutus.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="game/game.html">Dapatkan Voucher</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Kategori
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="kategori/makanan.html">Makanan</a></li>
+              <li><a class="dropdown-item" href="kategori/daput&bahan.html">Dapur & Bahan</a></li>
+              <li><a class="dropdown-item" href="kategori/minuman.html">Minuman</a></li>
+              <li><a class="dropdown-item" href="kategori/kesehatan.html">Kesehatan & Kebersihan</a></li>
+              <li><a class="dropdown-item" href="kategori/kebutuhanrumah.html">Kebutuhan Rumah</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="kategori/lainnya.html">Lainnya</a></li>
+            </ul>
+          </li>
+        </ul>
+
+              <div class="cart-icon ms-auto">
+                  <button class="btn btn-outline-primary btn-light" data-bs-toggle="modal" data-bs-target="#cartModal">
+                      🛒 Cart <span class="cart-count" id="cartCount">0</span>
+                  </button>
+              </div>
+          
+      
+        
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Cari Barang ..." aria-label="Search">
+          <button class="btn btn-light" type="submit"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+      <!-- header -->
+       <div class="container-fluid my-5 pt-5">
+        <div class="row justify-content-center">
+           <div class="col-md-8 mb-3">
+            <div id="carouselExample" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="image/promodisc.webp" class="d-block w-100 rounded img-caraosel" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="image/promodisc2.webp" class="d-block w-100 rounded img-caraosel" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="image/promodisc3.webp" class="d-block w-100 rounded img-caraosel" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+           </div> 
+           <div class="col-md-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <img src="image/promodisc4.webp" alt="" class="img-rightheader">
+                </div>
+                <div class="row mt-3">
+                    <img src="image/promodisc5.webp" alt="" class="img-rightheader">
+                </div>
+            </div>
+           </div>
+        </div>
+       </div>
+       <div class="container py-4">
+        <!-- Kategori Belanja Section -->
+        <div class="mb-4">
+            <div class="mb-3">
+                <h2 class="h5 mb-0">🛒 Kategori Belanja</h2>
+            </div>
+
+            <div class="row g-2">
+                <!-- Makanan -->
+                <div class="col-lg-2 mb-4 col-sm-4">
+                  <a href="kategori/makanan.html" class="detailbarang text-decoration-none">
+                    <div class="card h-100">
+                        <img src="image/kategori1.webp" class="card-img-top " alt="Beras Ikan Paus 2.5KG">
+                        <div class="card-body text-center">
+                            <p>Makanan</p>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Dapur & Bahan -->
+                <div class="col-lg-2 mb-4 col-sm-4">
+                  <a href="kategori/daput&bahan.html" class="detailbarang text-decoration-none">
+                    <div class="card h-100">
+                        <img src="image/kategori dapur bahan.webp" class="card-img-top " alt="Beras Ikan Paus 2.5KG">
+                        <div class="card-body text-center">
+                            <p>Dapur & Bahan</p>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Minuman -->
+                <div class="col-lg-2 mb-4 col-sm-4">
+                  <a href="kategori/minuman.html" class="detailbarang text-decoration-none">
+                    <div class="card h-100">
+                        <img src="image/kategori minuman.webp" class="card-img-top " alt="Beras Ikan Paus 2.5KG">
+                        <div class="card-body text-center">
+                            <p>Minuman</p>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Kesehatan & Kebersihan -->
+                <div class="col-lg-2 mb-4 col-sm-4">
+                  <a href="kategori/kesehatan.html" class="detailbarang text-decoration-none">
+                    <div class="card h-100">
+                        <img src="image/kategori kesehatan.webp" class="card-img-top " alt="Beras Ikan Paus 2.5KG">
+                        <div class="card-body text-center">
+                            <p>Kesehatan & Kebersihan</p>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Kebutuhan Rumah -->
+                <div class="col-lg-2 mb-4 col-sm-4">
+                  <a href="kategori/kebutuhanrumah.html" class="detailbarang text-decoration-none">
+                    <div class="card h-100">
+                        <img src="image/kategori rumah.webp" class="card-img-top " alt="Beras Ikan Paus 2.5KG">
+                        <div class="card-body text-center">
+                            <p>Kebutuhan Rumah</p>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+
+                <!-- Lainnya -->
+                <div class="col-lg-2 mb-4 col-sm-4">
+                  <a href="kategori/lainnya.html" class="detailbarang text-decoration-none" >
+                    <div class="card h-100">
+                        <img src="image/kategori lainnya.webp" class="card-img-top " alt="Beras Ikan Paus 2.5KG">
+                        <div class="card-body text-center">
+                            <p>Lainnya</p>
+                        </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Promo Section -->
+        <div class="mb-4">
+          <div class="mb-3">
+              <h2 class="h5 mb-0">Promo Lainnya</h2>
+          </div>
+          <div class="d-flex align-items-center position-relative">
+              
+              <button class="btn btn-dark position-absolute start-0 top-50 translate-middle-y" id="scrollLeft">
+                  <i class="bi bi-chevron-left"></i>
+              </button>
+      
+              
+              <div class="overflow-hidden w-100">
+                  <div class="d-flex flex-nowrap gap-3 ILANGGESER" id="promoScroll">
+                      <a href="undermainten.html" class="text-decoration-none">
+                          <img src="image/promodisc.webp" class="rounded " style="width: 300px;" alt="Promo 1">
+                      </a>
+                      <a href="undermainten.html" class="text-decoration-none">
+                          <img src="image/promodisc2.webp" class="rounded"  style="width: 300px;" alt="Promo 2">
+                      </a>
+                      <a href="undermainten.html" class="text-decoration-none">
+                          <img src="image/promodisc3.webp" class="rounded " style="width: 300px;" alt="Promo 3">
+                      </a>
+                      <a href="undermainten.html" class="text-decoration-none">
+                        <img src="image/promodisc4.webp" class="rounded " style="width: 300px;" alt="Promo 1">
+                    </a>
+                    <a href="/undermainten.html" class="text-decoration-none">
+                        <img src="image/promodisc5.webp" class="rounded " style="width: 300px;" alt="Promo 2">
+                    </a>
+                    <a href="undermainten.html" class="text-decoration-none">
+                        <img src="image/promodisc.webp" class="rounded " style="width: 300px;" alt="Promo 3">
+                    </a>
+                    <a href="undermainten.html" class="text-decoration-none">
+                          <img src="image/promodisc2.webp" class="rounded " style="width: 300px;" alt="Promo 1">
+                      </a>
+                      <a href="undermainten.html" class="text-decoration-none">
+                          <img src="image/promodisc3.webp" class="rounded " style="width: 300px;" alt="Promo 2">
+                      </a>
+                      <a href="undermainten.html" class="text-decoration-none">
+                          <img src="image/promodisc4.webp" class="rounded" style="width: 300px;" alt="Promo 3">
+                      </a>
+                  </div>
+              </div>
+      
+              
+              <button class="btn btn-dark position-absolute end-0 top-50 translate-middle-y" id="scrollRight">
+                  <i class="bi bi-chevron-right"></i>
+              </button>
+          </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const promoScroll = document.getElementById("promoScroll");
+          const scrollLeft = document.getElementById("scrollLeft");
+          const scrollRight = document.getElementById("scrollRight");
+
+          const scrollAmount = 300; 
+
+          scrollLeft.addEventListener("click", () => {
+            promoScroll.scrollLeft -= scrollAmount;
+          });
+
+          scrollRight.addEventListener("click", () => {
+            promoScroll.scrollLeft += scrollAmount;
+          });
+        });
+      </script>
+      
+      </div>
+      
+       
+      <!-- header end -->
+       <div class="container mt-4">
+          <div class="row">
+            <p class="fw-bold fs-5">Produk Terlaris</p>
+            <div class="d-flex align-items-center position-relative">
+              <button class="btn btn-dark position-absolute start-0 top-50 translate-middle-y z-2" id="scrollLeft1">
+                  <i class="bi bi-chevron-left"></i>
+              </button>
+              <div class="overflow-hidden w-100">
+                <div class="d-flex flex-nowrap gap-3 ILANGGESER" id="promoScroll1">
+                  <div class="col-lg-3 mb-4 col-sm-4">
+                    <a href="DETAILS PRODUK/detailberas2,5kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 2.5kg.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 2.5KG</h5>
+                              <p class="card-text text-danger">Rp 37.200</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4 col-sm-4">
+                    <a href="DETAILS PRODUK/detailberas5kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 5kg.jpeg" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 5KG</h5>
+                              <p class="card-text text-danger">Rp 73.900</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4 col-sm-4">
+                    <a href="DETAILS PRODUK/indomiebawang.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie ayam bawang.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Ayam Bawang</h5>
+                              <p class="card-text text-danger">Rp 3.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4 col-sm-4">
+                    <a href="DETAILS PRODUK/indomiegoreng.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie goreng jumbo.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Goreng JUmbo</h5>
+                              <p class="card-text text-danger">Rp 4.200</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4 col-sm-4">
+                    <a href="DETAILS PRODUK/bimoli1L.html" class="detailbarang text-decoration-none" >
+                      <div class="card h-100">
+                          <img src="image/bimoli 1liter.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Bimoli Minyak Goreng 1L</h5>
+                              <p class="card-text text-danger">Rp 21.500</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4 col-sm-4">
+                    <a href="DETAILS PRODUK/beras25kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 25kg.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 25KG</h5>
+                              <p class="card-text text-danger">Rp 350.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-dark position-absolute end-0 top-50 translate-middle-y" id="scrollRight1">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const promoScroll1 = document.getElementById("promoScroll1");
+                const scrollLeft1 = document.getElementById("scrollLeft1");
+                const scrollRight1 = document.getElementById("scrollRight1");
+      
+                const scrollAmount = 300; 
+      
+                scrollLeft1.addEventListener("click", () => {
+                  promoScroll1.scrollLeft -= scrollAmount;
+                });
+      
+                scrollRight1.addEventListener("click", () => {
+                  promoScroll1.scrollLeft += scrollAmount;
+                });
+              });
+            </script>
+
+            <p class="fw-bold fs-5">Beras</p>
+            <div class="d-flex align-items-center position-relative">
+              <button class="btn btn-dark position-absolute start-0 top-50 translate-middle-y z-2" id="scrollLeft2">
+                  <i class="bi bi-chevron-left"></i>
+              </button>
+              <div class="overflow-hidden w-100">
+                <div class="d-flex flex-nowrap gap-3 ILANGGESER" id="promoScroll2">
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/detailberas2,5kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 2.5kg.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 2.5KG</h5>
+                              <p class="card-text text-danger">Rp 37.200</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/detailberas5kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 5kg.jpeg" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 5KG</h5>
+                              <p class="card-text text-danger">Rp 73.900</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/detailberas10kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 10kg.jpg" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 10KG</h5>
+                              <p class="card-text text-danger">Rp 146.000</p>
+                             
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/beras25kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 25kg.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 25KG</h5>
+                              <p class="card-text text-danger">Rp 350.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/beras25kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 25kg.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 25KG</h5>
+                              <p class="card-text text-danger">Rp 350.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/beras25kg.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/beras jeremy 25kg.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Beras Ikan Paus 25KG</h5>
+                              <p class="card-text text-danger">Rp 350.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-dark position-absolute end-0 top-50 translate-middle-y" id="scrollRight2">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const promoScroll2 = document.getElementById("promoScroll2");
+                const scrollLeft2 = document.getElementById("scrollLeft2");
+                const scrollRight2 = document.getElementById("scrollRight2");
+      
+                const scrollAmount = 300; 
+      
+                scrollLeft2.addEventListener("click", () => {
+                  promoScroll2.scrollLeft -= scrollAmount;
+                });
+      
+                scrollRight2.addEventListener("click", () => {
+                  promoScroll2.scrollLeft += scrollAmount;
+                });
+              });
+            </script>
+            <p class="fw-bold fs-5">Minyak Goreng</p>
+            <div class="d-flex align-items-center position-relative">
+              <button class="btn btn-dark position-absolute start-0 top-50 translate-middle-y z-2" id="scrollLeft3">
+                  <i class="bi bi-chevron-left"></i>
+              </button>
+              <div class="overflow-hidden w-100">
+                <div class="d-flex flex-nowrap gap-3 ILANGGESER" id="promoScroll3">
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/bimoli1L.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/bimoli 1liter.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Bimoli Minyak Goreng 1L</h5>
+                              <p class="card-text text-danger">Rp 21.500</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/bimoli2L.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/bimoli 2liter.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Bimoli Minyak Goreng 2L</h5>
+                              <p class="card-text text-danger">Rp 41.900</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/bimoli5L.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/bimoli 5liter.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Bimoli Minyak Goreng 5L</h5>
+                              <p class="card-text text-danger">Rp 108.900</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/bimolibotol.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/bimoli 2liter botol.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Bimoli minyak goreng botol 2L</h5>
+                              <p class="card-text text-danger">Rp 45.200</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/bimolibotol.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/bimoli 2liter botol.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Bimoli minyak goreng botol 2L</h5>
+                              <p class="card-text text-danger">Rp 45.200</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/bimolibotol.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/bimoli 2liter botol.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Bimoli minyak goreng botol 2L</h5>
+                              <p class="card-text text-danger">Rp 45.200</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-dark position-absolute end-0 top-50 translate-middle-y" id="scrollRight3">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const promoScroll3 = document.getElementById("promoScroll3");
+                const scrollLeft3 = document.getElementById("scrollLeft3");
+                const scrollRight3 = document.getElementById("scrollRight3");
+                const scrollAmount = 300; 
+                scrollLeft3.addEventListener("click", () => {
+                  promoScroll3.scrollLeft -= scrollAmount;
+                });
+                scrollRight3.addEventListener("click", () => {
+                  promoScroll3.scrollLeft += scrollAmount;
+                });
+              });
+            </script>
+            <p class="fw-bold fs-5">Mie Instan</p>
+            <div class="d-flex align-items-center position-relative">
+              <button class="btn btn-dark position-absolute start-0 top-50 translate-middle-y z-2" id="scrollLeft4">
+                  <i class="bi bi-chevron-left"></i>
+              </button>
+              <div class="overflow-hidden w-100">
+                <div class="d-flex flex-nowrap gap-3 ILANGGESER" id="promoScroll4">
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/indomiebawang.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie ayam bawang.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Ayam Bawang</h5>
+                              <p class="card-text text-danger">Rp 3.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/indomiegoreng.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie goreng jumbo.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Goreng Jumbo </h5>
+                              <p class="card-text text-danger">Rp 4.200</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/indomiekaldu.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie kaldu ayam.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Kaldu Ayam</h5>
+                              <p class="card-text text-danger">Rp 3.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/indomikari.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie kari ayam.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Kari Ayam</h5>
+                              <p class="card-text text-danger">Rp 3.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/indomikari.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie kari ayam.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Kari Ayam</h5>
+                              <p class="card-text text-danger">Rp 3.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="col-lg-3 mb-4  col-sm-4">
+                    <a href="DETAILS PRODUK/indomikari.html" class="detailbarang text-decoration-none">
+                      <div class="card h-100">
+                          <img src="image/indomie kari ayam.webp" class="card-img-top" alt="Beras Ikan Paus 2.5KG">
+                          <div class="card-body text-center">
+                              <h5 class="card-title">Indomie Kari Ayam</h5>
+                              <p class="card-text text-danger">Rp 3.000</p>
+                              
+                          </div>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-dark position-absolute end-0 top-50 translate-middle-y" id="scrollRight4">
+                <i class="bi bi-chevron-right"></i>
+              </button>
+            </div>
+            <script>
+              document.addEventListener("DOMContentLoaded", () => {
+                const promoScroll4 = document.getElementById("promoScroll4");
+                const scrollLeft4 = document.getElementById("scrollLeft4");
+                const scrollRight4 = document.getElementById("scrollRight4");
+                const scrollAmount = 300; 
+                scrollLeft4.addEventListener("click", () => {
+                  promoScroll4.scrollLeft -= scrollAmount;
+                });
+                scrollRight4.addEventListener("click", () => {
+                  promoScroll4.scrollLeft += scrollAmount;
+                });
+              });
+            </script>
+          </div>
+         </div>
+       
+       <!-- footer -->
+       <footer class="bg-light py-4">
+        <div class="container">
+          <div class="row">
+          
+            <div class="col-md-3">
+              <h5>Layanan Pelanggan</h5>
+              <ul class="list-unstyled">
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">Bantuan</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">Metode Pembayaran</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">lacak pengiriman penjual</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">lacak pesanan pembeli</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">gratis ongkir</a></li>
+                
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h5>Jelajahi Go-mart</h5>
+              <ul class="list-unstyled">
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">tentang kami</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">Kebijakan go-mart</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">Kebijakan privasi</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">flash sale</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">kontak media</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h5>Go-mart</h5>
+              <ul class="list-unstyled">
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">food</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">virtual</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">Travel</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">official store</a></li>
+                <li><a href="undermainten.html" class="text-decoration-none text-dark">blog Go-mart</a></li>
+              </ul>
+            </div>
+            
+            <div class="col-md-3">
+              <h5>feedback</h5>
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Your Name">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Your Email">
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" rows="3" placeholder="Your feedback"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <p class="mb-0">&copy; 2025 Company, Inc. All rights reserved.</p>
+            <div class="mt-2">
+              <a href=" https://x.com/alfamart?t=8OD-lvwISyT-6o_bmwMskg&s=08 " class="text-dark me-2 text-decoration-none"><i class="bi bi-twitter"></i> Twitter</a>
+              <a href="https://www.instagram.com/alfamart?igsh=djZ0NHByMW9uNzZz" class="text-dark me-2 text-decoration-none"><i class="bi bi-instagram "></i> Instagram</a>
+              <a href="https://www.facebook.com/share/p/191qj68F1h/" class="text-dark text-decoration-none"><i class="bi bi-facebook "></i> Facebook</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+       <!-- footer end -->
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>

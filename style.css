@@ -1,0 +1,43 @@
+.img-caraosel {
+    height: 100%;
+}
+
+.img-rightheader {
+    height: 100%;
+    border-radius: 2rem;
+}
+.container.row{
+    gap: 10rem;
+}
+.card:hover{
+    box-shadow: 10px 10px 20px rgba(36, 36,36, 0.5);
+}
+#promoScroll {
+    scroll-behavior: smooth;
+    overflow-x: auto;
+}
+#promoScroll1 {
+    scroll-behavior: smooth;
+    overflow-x: auto;
+}
+#promoScroll2 {
+    scroll-behavior: smooth;
+    overflow-x: auto;
+}
+#promoScroll3 {
+    scroll-behavior: smooth;
+    overflow-x: auto;
+}
+#promoScroll4 {
+    scroll-behavior: smooth;
+    overflow-x: auto;
+}
+.ILANGGESER::-webkit-scrollbar{
+    width: 0;
+}
+.kisahkami{
+    background-image: url(image/backgroundabout2.jpg);
+    height: 100%;
+    width: 100%;
+}
+

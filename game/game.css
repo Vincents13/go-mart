@@ -1,0 +1,77 @@
+body {
+    
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+
+    
+}
+
+.countdown {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 500px;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: #2196F3;
+    border: 2px solid #1976D2;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: transparent;
+}
+
+.card.flipped {
+    background-color: white;
+    color: black;
+}
+
+.message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    text-align: center;
+    display: none;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.voucher {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #E8F5E9;
+    border-radius: 5px;
+}

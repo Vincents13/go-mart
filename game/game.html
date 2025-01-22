@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Memory Card Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="game.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-success navbar-dark fixed-top">
+        <div class="container-fluid">
+          <a class="navbar-brand fw-bold" href="#">Go - Mart <i class="bi bi-cart-fill"></i></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="../aboutus.html">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="game.html">Dapatkan Voucher</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Kategori
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="../kategori/makanan.html">Makanan</a></li>
+                  <li><a class="dropdown-item" href="../kategori/daput&bahan.html">Dapur & Bahan</a></li>
+                  <li><a class="dropdown-item" href="../kategori/minuman.html">Minuman</a></li>
+                  <li><a class="dropdown-item" href="../kategori/kesehatan.html">Kesehatan & Kebersihan</a></li>
+                  <li><a class="dropdown-item" href="../kategori/kebutuhanrumah.html">Kebutuhan Rumah</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="../kategori/lainnya.html">Lainnya</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+
+          <div class="d-flex flex-column justify-content-center align-items-center vh-100">
+            <div class="countdown mb-3 text-danger">Waktu: <span id="timer">30</span> detik</div>
+            <button onclick="startGame()" id="startBtn" class="btn btn-primary mb-3">Mulai Game</button>
+            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              Tutorial Bermain
+            </button>
+            <div id="gameBoard" class="game-board"></div>
+            <div id="message" class="message">
+                <h2 id="messageTitle"></h2>
+                <p id="messageText"></p>
+                <div id="voucherCode" class="voucher"></div>
+                <button onclick="resetGame()" class="btn btn-warning">Main Lagi</button>
+            </div>
+        </div>
+        <!--  deklarasi -->
+    <script>
+        const symbols = ['🎮', '🎲', '🎪', '🎨', '🎭', '😎', '🎯', '🎳']; // emoji yang digunakan untuk tebak tebakan
+        let cards = []; // array untuk menyimpan kartu setelah di acak
+        let flippedCards = [];// menyimpan kartu yang sedang dibuka
+        let matchedPairs = 0;//menghitung pasangan yang sudah cocok
+        let timer; // untuk waktunya
+        let timeLeft; // waktu yang tersisa
+        let isPlaying = false; // styatus permainan
+
+        // Buat dan tampilkan kartu
+        function createBoard() {
+            const gameBoard = document.getElementById('gameBoard');
+            gameBoard.innerHTML = '';
+            
+            // Duplikasi dan acak kartu
+            cards = [...symbols, ...symbols].sort(() => Math.random() - 0.5);
+            
+            // Buat elemen kartu
+            cards.forEach((symbol, index) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.textContent = symbol;
+                card.dataset.index = index;
+                card.onclick = () => flipCard(card);
+                gameBoard.appendChild(card);
+            });
+        }
+        // menangani even saat diklik,validasi kartu bisa dibuka,menambahkan kartu ke array flippedcards untuk cek kecocokan
+        function flipCard(card) {
+            if (!isPlaying) return; // Cek apakah game sedang berjalan
+            if (flippedCards.length === 2) return; // Maksimal 2 kartu yang bisa dibuka
+            if (card.classList.contains('flipped')) return;  // Kartu sudah terbuka
+
+
+            card.classList.add('flipped'); // Membalik kartu 
+            flippedCards.push(card); // Menambahkan ke array kartu terbuka
+            if (flippedCards.length === 2) {  // pengecekan apakah sudah 2 kartu dibuka
+                setTimeout(checkMatch, 500);
+            }
+        }
+        //memeriksa apakah 2 kartu yang terbuka cocok
+        function checkMatch() {
+            const [card1, card2] = flippedCards;
+            const match = card1.textContent === card2.textContent;
+
+            if (match) {
+                matchedPairs++; // jika kedua kartu yang dibuka cocok maka matchpaors ditambah
+                if (matchedPairs === symbols.length) {
+                    endGame(true);  // jika jumlah matchpair sudah sesuai dengan jumlah simbol maka permainan berakhir
+                }
+            } else {
+                card1.classList.remove('flipped'); // apabila kartu yang dibuka belum cocok maka kartu akan ditutup kembali
+                card2.classList.remove('flipped');
+            }
+            flippedCards = []; // array flippef card dikosonghkan kembali
+        }
+
+        function startGame() {
+            createBoard(); //memanggil function
+            isPlaying = true; // mengatur status awal 
+            timeLeft = 30; // set waktu awal
+            matchedPairs = 0;
+            document.getElementById('startBtn').style.display = 'none';
+
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').textContent = timeLeft;
+                if (timeLeft <= 0) {
+                    endGame(false);
+                }
+            }, 1000);
+        }
+        //pesan di akhir permainan
+        function endGame(won) {
+            isPlaying = false;
+            clearInterval(timer);
+
+            const messageTitle = document.getElementById('messageTitle');
+            const messageText = document.getElementById('messageText');
+            const voucherCode = document.getElementById('voucherCode');
+            const message = document.getElementById('message');
+
+            if (won && timeLeft > 0) { // jika menang akan muncul teks seperti dibawah
+                messageTitle.textContent = 'Selamat!';
+                messageText.textContent = `Anda menang dengan ${timeLeft} detik tersisa!`;
+                voucherCode.textContent = 'DISKON50RIBU';
+                voucherCode.style.display = 'block';
+            } else { // jika kalah akan muncul teks seperti dibawah
+                messageTitle.textContent = 'Game Over!';
+                messageText.textContent = 'Waktu habis! Coba lagi untuk mendapatkan voucher.';
+                voucherCode.style.display = 'none';
+            }
+
+            message.style.display = 'block';
+        }
+        //reset permainnan. mengembalikan semua variabel dan element ke kondisi awal
+        function resetGame() {
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('startBtn').style.display = 'block';
+            document.getElementById('timer').textContent = '30';
+            document.getElementById('gameBoard').innerHTML = '';
+            flippedCards = [];
+            matchedPairs = 0;
+            clearInterval(timer);
+        }
+
+        // Initialize game
+        resetGame();
+    </script>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cara Bermain</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ol class="list-group list-group-numbered mb-4">
+          <li class="list-group-item">Klik tombol "Mulai Game" untuk memulai permainan</li>
+          <li class="list-group-item">Anda memiliki waktu 30 detik untuk menyelesaikan permainan</li>
+          <li class="list-group-item">Klik pada kartu untuk membaliknya dan temukan pasangannya</li>
+          <li class="list-group-item">Cocokkan semua pasangan kartu sebelum waktu habis</li>
+          <li class="list-group-item">Jika berhasil, Anda akan mendapatkan voucher diskon!</li>
+      </ol>
+      <h4>🎁 Benefit:</h4>
+      <ul class="list-group mb-4">
+        <li class="list-group-item">
+            <i class="bi bi-gift text-success"></i> Voucher diskon Rp 50.000
+        </li>
+        <li class="list-group-item">
+            <i class="bi bi-clock text-success"></i> Berlaku untuk 24 jam
+        </li>
+        <li class="list-group-item">
+            <i class="bi bi-cart-check text-success"></i> Dapat digunakan untuk semua produk
+        </li>
+        <li class="list-group-item">
+            <i class="bi bi-arrow-repeat text-success"></i> Bisa main berulang kali setiap hari
+        </li>
+    </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Mengerti</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="bg-light py-4">
+        <div class="container">
+          <div class="row">
+            
+            <div class="col-md-3">
+              <h5>Layanan Pelanggan</h5>
+              <ul class="list-unstyled">
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">Bantuan</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">Metode Pembayaran</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">lacak pengiriman penjual</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">lacak pesanan pembeli</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">gratis ongkir</a></li>
+                
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h5>Jelajahi Go-mart</h5>
+              <ul class="list-unstyled">
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">tentang kami</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">Kebijakan go-mart</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">Kebijakan privasi</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">flash sale</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">kontak media</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3">
+              <h5>Go-mart</h5>
+              <ul class="list-unstyled">
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">food</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">virtual</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">Travel</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">official store</a></li>
+                <li><a href="../undermainten.html" class="text-decoration-none text-dark">blog Go-mart</a></li>
+              </ul>
+            </div>
+            
+            <div class="col-md-3">
+              <h5>feedback</h5>
+              <form>
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Your Name">
+                </div>
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" placeholder="Your Email">
+                </div>
+                <div class="mb-3">
+                  <label for="message" class="form-label">Message</label>
+                  <textarea class="form-control" id="message" rows="3" placeholder="Your feedback"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+          <div class="text-center mt-4">
+            <p class="mb-0">&copy; 2025 Company, Inc. All rights reserved.</p>
+            <div class="mt-2">
+              <a href=" https://x.com/alfamart?t=8OD-lvwISyT-6o_bmwMskg&s=08 " class="text-dark me-2 text-decoration-none"><i class="bi bi-twitter"></i> Twitter</a>
+              <a href="https://www.instagram.com/alfamart?igsh=djZ0NHByMW9uNzZz" class="text-dark me-2 text-decoration-none"><i class="bi bi-instagram "></i> Instagram</a>
+              <a href="https://www.facebook.com/share/p/191qj68F1h/" class="text-dark text-decoration-none"><i class="bi bi-facebook "></i> Facebook</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <script>
+        // Show modal when page loads
+        window.addEventListener('load', function() {
+            const howToPlayModal = new bootstrap.Modal(document.getElementById('exampleModal'));
+            howToPlayModal.show();
+        });
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
